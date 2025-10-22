@@ -1,18 +1,35 @@
+'''Caso de Prueba de Navegación:
+
+Verificar que el título de la página de inventario sea correcto
+
+Comprobar que existan productos visibles en la página (al menos verificar la presencia de uno)
+
+Validar que elementos importantes de la interfaz estén presentes (menú, filtros, etc.)
+
+Criterios mínimos:
+
+Valida título
+
+Valida presencia de productos 
+
+Lista nombre/precio del primero.'''
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from other
 
-def test_login():
+
+def test_inventory():
 
     driver = webdriver.Chrome()
 
     driver.implicitly_wait(5)
 
-    try:
-        driver.get("https://www.saucedemo.com/")
+    
 
-        driver.find_element(By.ID, "user-name").send_keys("standard_user")
-        driver.find_element(By.ID, "password").send_keys("secret_sauce")
-        driver.find_element(By.ID, "login-button").click()
+
+    try:
+        
 
         assert "/inventory" in driver.current_url, "No se redirigio correctamente al inventario."
 
