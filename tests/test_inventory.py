@@ -36,6 +36,28 @@ def test_inventory():
 
         #Validar que elementos importantes de la interfaz estén presentes (menú, filtros, etc.)
 
+
+        '''ACA SERIA MEJOR VERIFICAR QUE ESTEN LOS 4 ELEMENTOS DIRECTAMENTE.'''
+        #Verificamos que este presente el filtro tenga 4 elementos
+        filtro = driver.find_element(By.CSS_SELECTOR, "span.product_sort_container")
+        
+        assert len(filtro.find_elements(By.TAG, "option")) == 4
+
+
+        #Verificamos que este el menu hamburguesa.
+        hamburguer_button = driver.find_element(By.ID, "react-burger-menu-btn")
+
+        #Hacemos click y verificamos que aparezcan los elementos
+        hamburguer_button.click()
+
+        assert "All items" == driver.find_element(By.ID, "a.inventory_sidebar_link").text
+        assert "About" == driver.find_element(By.ID, "a.about_sidebar_link").text
+        assert "Logout" == driver.find_element(By.ID, "a.logout_sidebar_link").text
+        assert "Reset App State" == driver.find_element(By.ID, "a.reset_sidebar_link").text 
+
+        #Verificamos que también esté el menu para cerrarlo una vez abierto.
+        driver.find_element(By.ID, "react-burger-cross-btn")        
+
     except Exception as e:
         raise
     finally:
