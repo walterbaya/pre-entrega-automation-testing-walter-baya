@@ -89,16 +89,24 @@ cd tests
 
 Y luego con los siguiente comando corremos el que nos interese
 
-pytest test-login.py    # login
-pytest test-inventory.py  # inventario
-pytest test-cart.py       #carrito
+- pytest test-login.py    # login
+- pytest test-inventory.py  # inventario
+- pytest test-cart.py       #carrito
 
 
 ## Generación de reporte HTML
 
 Podés generar un reporte visual de los resultados con el siguiente comando:
 
-pytest pre-entrega-final/test_saucedemo.py -v --html=reporte.html
+- pytest test_saucedemo.py -v --html=reporte.html
+
+Para cada prueba individual 
+
+cd tests 
+
+- pytest test-login.py v --html=reporte-login.html   # login
+- pytest test-inventory.py --html=reporte-inventory.html # inventario
+- pytest test-cart.py --html=reporte-cart.html      #carrit
 
 Esto creará un archivo reporte.html en la raíz del proyecto, que podrás abrir en cualquier navegador web para ver el resumen de las pruebas ejecutadas.
 
