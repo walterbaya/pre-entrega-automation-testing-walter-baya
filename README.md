@@ -22,8 +22,8 @@ Para poder instalar las dependencias **necesitamos tener instalado Python 3.10+*
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/usuario/pre-entrega-final.git
-   cd pre-entrega-final
+   git clone https://github.com/usuario/pre-entrega-automation-testing-walter-baya/.git
+   cd pre-entrega-automation-testing-walter-baya
 
 2. **Instalacion de pip**
 
@@ -83,9 +83,16 @@ pytest -v
 
 ### Ejecución de pruebas específicas
 
-Para ejecutar únicamente las pruebas del archivo principal:
+Para ejecutar cada prueba en particular:
 
-pytest pre-entrega-final/test_saucedemo.py -v
+cd tests
+
+Y luego con los siguiente comando corremos el que nos interese
+
+pytest test-login.py    # login
+pytest test-inventory.py  # inventario
+pytest test-cart.py       #carrito
+
 
 ## Generación de reporte HTML
 
@@ -94,6 +101,19 @@ Podés generar un reporte visual de los resultados con el siguiente comando:
 pytest pre-entrega-final/test_saucedemo.py -v --html=reporte.html
 
 Esto creará un archivo reporte.html en la raíz del proyecto, que podrás abrir en cualquier navegador web para ver el resumen de las pruebas ejecutadas.
+
+## Estructura del proyecto
+
+pre-entrega-final/
+│
+├── pages/                      # Clases Page Object (login, inventario, carrito)
+├── tests/
+│   ├── test_saucedemo.py       # Archivo principal de pruebas automatizadas
+│
+├── conftest.py                 # Configuración global y fixtures de Pytest
+├── requirements.txt            # Dependencias del proyecto
+├── reporte.html                # Reporte HTML generado (opcional)
+└── README.md                   # Este archivo
 
 
 
