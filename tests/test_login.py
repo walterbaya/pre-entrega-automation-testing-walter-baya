@@ -8,16 +8,20 @@ def test_login():
 
     driver.implicitly_wait(5)
 
-    login(driver)
+    try:
+    
+        login(driver) 
 
-    assert "/inventory" in driver.current_url, "No se redirigio correctamente al inventario."
+        assert "/inventory" in driver.current_url, "No se redirigio correctamente al inventario."
 
-    main_title = driver.find_element(By.CSS_SELECTOR, "div.app_logo").text 
+        main_title = driver.find_element(By.CSS_SELECTOR, "div.app_logo").text 
+        assert main_title == "Swag Labs"
 
-    assert main_title == "Swag Labs"
+        products_title = driver.find_element(By.CSS_SELECTOR, "span.title").text 
+        assert products_title == "Products"
 
-    products_title = driver.find_element(By.CSS_SELECTOR, "span.title").text 
-
-    assert products_title == "Products"
-
-    driver.quit()
+    except Exception as e:
+        raise
+    finally:
+        
+        driver.quit()
