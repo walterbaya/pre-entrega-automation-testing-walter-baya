@@ -18,19 +18,14 @@ El propósito es validar los principales flujos de usuario en la aplicación, as
 
 ## Instalación de dependencias
 
-Para poder instalar las dependencias **necesitamos tener instalado Python 3.10+**.
+Para poder instalar las dependencias **necesitamos tener instalado Python 3.10+ y pip** se sugiere tener agregados al path los mismos para ejecutar los siguientes comandos, en caso de no tenerlos se pueden ejecutar anteponiendo py o python -m delante de los mismos.
 
 1. **Clonar el repositorio:**
    ```bash
    git clone https://github.com/usuario/pre-entrega-automation-testing-walter-baya/.git
    cd pre-entrega-automation-testing-walter-baya
 
-2. **Instalacion de pip**
-
-- **python -m ensurepip --default-pip**
-
-
-3. **Instalar las dependencias utilizamos el siguiente comando.
+2. **Instalar las dependencias utilizamos el siguiente comando.
 
 pip install -r requirements.txt
 
@@ -89,9 +84,9 @@ cd tests
 
 Y luego con los siguiente comando corremos el que nos interese
 
-- pytest test-login.py    # login
-- pytest test-inventory.py  # inventario
-- pytest test-cart.py       #carrito
+- pytest test_login.py    # login
+- pytest test_inventory.py  # inventario
+- pytest test_cart.py       #carrito
 
 
 ## Generación de reporte HTML
@@ -117,7 +112,9 @@ pre-entrega-final/
 ├── pages/                      # Clases Page Object (login, inventario, carrito)
 ├── tests/
 │   ├── test_saucedemo.py       # Archivo principal de pruebas automatizadas
-│
+│   ├── test_cart.py
+│   ├── test_inventory.py
+│   ├── test_login.py
 ├── conftest.py                 # Configuración global y fixtures de Pytest
 ├── requirements.txt            # Dependencias del proyecto
 ├── reporte.html                # Reporte HTML generado (opcional)
