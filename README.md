@@ -101,7 +101,11 @@ cd tests
 
 Esto creará un archivo reporte.html en la raíz del proyecto, que podrás abrir en cualquier navegador web para ver el resumen de las pruebas ejecutadas.
 
+posteriormente podemos visitar los mismos en la carpeta reportes.
+
 ![alt text](image.png)
 
+![alt text](image-1.png)
 
+![alt text](image-2.png)
 
