@@ -91,34 +91,17 @@ Y luego con los siguiente comando corremos el que nos interese
 
 ## Generación de reporte HTML
 
-Podés generar un reporte visual de los resultados con el siguiente comando:
-
-- pytest test_saucedemo.py -v --html=reporte.html
-
 Para cada prueba individual 
 
 cd tests 
 
-- pytest test-login.py v --html=reporte-login.html   # login
-- pytest test-inventory.py --html=reporte-inventory.html # inventario
-- pytest test-cart.py --html=reporte-cart.html      #carrit
+- pytest test_login.py -v --html=reportes/reporte-login.html   # login
+- pytest test_inventory.py -v --html=reportes/reporte-inventory.html # inventario
+- pytest test_cart.py -v --html=reportes/reporte-cart.html      #carrito
 
 Esto creará un archivo reporte.html en la raíz del proyecto, que podrás abrir en cualquier navegador web para ver el resumen de las pruebas ejecutadas.
 
-## Estructura del proyecto
-
-pre-entrega-final/
-│
-├── pages/                      # Clases Page Object (login, inventario, carrito)
-├── tests/
-│   ├── test_saucedemo.py       # Archivo principal de pruebas automatizadas
-│   ├── test_cart.py
-│   ├── test_inventory.py
-│   ├── test_login.py
-├── conftest.py                 # Configuración global y fixtures de Pytest
-├── requirements.txt            # Dependencias del proyecto
-├── reporte.html                # Reporte HTML generado (opcional)
-└── README.md                   # Este archivo
+![alt text](image.png)
 
 
 

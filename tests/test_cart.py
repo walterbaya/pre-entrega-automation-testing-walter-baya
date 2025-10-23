@@ -28,12 +28,44 @@ def test_cart():
 
         assert len(products) >= 1, "Error, no hay elementos en el inventario"
 
+        #capturamos el producto 0
+
+        product0 = products[0]
+        
+        product_title = product0.find_element(By.CSS_SELECTOR, "div.inventory_item_name ").text
+        product_price = product0.find_element(By.CSS_SELECTOR, "div.inventory_item_price").text
+
         #Seleccionamos el botón y lo cliqueamos
-        products[0].find_element(By.TAG_NAME, "button").click()  
+
+        product0.find_element(By.TAG_NAME, "button").click()  
 
         #Esperamos a que el texto que aparezca sea 1, en otro caso lanzara un error 
         wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "span.shopping_cart_badge"),"1"))
 
+
+        #Navegar al carrito de compras
+
+        shopping_cart_container = driver.find_element(By.ID, "shopping_cart_container")
+        shopping_cart_container.find_element(By.TAG_NAME, "a").click()
+
+
+        #Comprobar que aparezca un producto
+
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.cart_item")))
+        
+        #verificamos que sea solo uno y sea especificamente ese
+        items = driver.find_elements(By.CSS_SELECTOR, "div.cart_item")
+
+        assert len(items) == 1
+
+        #Obtenemos el unico, su nombre y precio
+        item = items[0]
+        item_price = item.find_element(By.CSS_SELECTOR, "div.inventory_item_price").text
+        item_title = item.find_element(By.CSS_SELECTOR, "div.inventory_item_name").text
+
+        #Obtenemos la misma informacion del producto original Comparamos el nombre y precio        
+        assert product_price == item_price and product_title == item_title
+        
     except Exception as e:
         raise
     finally:
