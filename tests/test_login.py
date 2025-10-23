@@ -1,10 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from utils.login import login
+from selenium.webdriver.chrome.options import Options
 
 def test_login():
 
-    driver = webdriver.Chrome()
+    #Desactivo esto para usar un perfil limpio y asi evitar las comprobaciones de contraseña
+    chrome_options = Options()
+    chrome_options.add_argument("--incognito")
+
+    driver = webdriver.Chrome(options=chrome_options)
 
     driver.implicitly_wait(5)
 

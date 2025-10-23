@@ -3,11 +3,16 @@ from selenium.webdriver.common.by import By
 from utils.login import login
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 
 def test_inventory():
 
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--incognito")
+
+    driver = webdriver.Chrome(options=chrome_options)
+    
     wait = WebDriverWait(driver, 10)
 
     try:
@@ -33,16 +38,19 @@ def test_inventory():
         price = products[0].find_element(By.CSS_SELECTOR, "div.inventory_item_price").text
         name =  products[0].find_element(By.CSS_SELECTOR, "div.inventory_item_name").text  
 
+        #Verificamos que aparezca el simbolo $ y tambien que el nombre no sea vacio.
         assert "$" in price
         assert len(name) > 0
 
         #Validar que elementos importantes de la interfaz estén presentes (menú, filtros, etc.)
 
         #Verificamos que este presente el filtro y tenga los 4 elementos
-        product_sort_container = driver.find_element(By.CSS_SELECTOR, "span.product_sort_container")
+        product_sort_container = driver.find_element(By.CSS_SELECTOR, "select.product_sort_container")
         options = product_sort_container.find_elements(By.TAG_NAME, "option")
         
         assert len(options) == 4
+
+        wait.until(EC.visibility_of_element_located((By.ID, "react-burger-menu-btn")))
 
         #Verificamos que este el menu hamburguesa.
         hamburguer_button = driver.find_element(By.ID, "react-burger-menu-btn")
@@ -51,9 +59,9 @@ def test_inventory():
         hamburguer_button.click()
 
         #Esperamos hasta que el primer elemento se muestre
-        wait.until(EC.visibility_of_element_located(By.ID, "inventory_sidebar_link"))
+        wait.until(EC.visibility_of_element_located((By.ID, "inventory_sidebar_link")))
 
-        assert "All items" == driver.find_element(By.ID, "inventory_sidebar_link").text
+        assert "All Items" == driver.find_element(By.ID, "inventory_sidebar_link").text
         assert "About" == driver.find_element(By.ID, "about_sidebar_link").text
         assert "Logout" == driver.find_element(By.ID, "logout_sidebar_link").text
         assert "Reset App State" == driver.find_element(By.ID, "reset_sidebar_link").text 
@@ -61,9 +69,9 @@ def test_inventory():
         #Verificamos que también esté el menu para cerrarlo una vez abierto y lo cerramos.
         driver.find_element(By.ID, "react-burger-cross-btn").click()
 
-        #Verificamos que se halla cerrado correctamente, o sea tiene que tener el valor hidden en true
+        #Verificamos que se halla cerrado correctamente, o sea que se invisible ahora el menu
 
-        wait.until(EC.attribute_to_be((By.CLASS_NAME, "bm-menu-wrap"), "hidden", "true"))        
+        wait.until(EC.invisibility_of_element_located((By.CLASS_NAME, "bm-menu-wrap")))        
 
         #Verificamos el carrito de compras y su elemento a cliqueable    
 
